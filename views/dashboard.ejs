@@ -245,6 +245,7 @@
 							<div class="blog-author">
 								<div class="author-bio">
 									<h3 class="author_name"><a href="#"><%= user.name %>'s Courses:</a></h3>
+									<button class="btn btn-lg btn-warning rounded-0 text-white" href="#" data-toggle="modal" data-target="#addCategory"><span>Add New Category</span></button>
 								</div>
 							</div>
 							
@@ -280,7 +281,6 @@
 							  <tr>
 								<th scope="col">ID</th>
 								<th scope="col">Name</th>
-								<th scope="col">Add</th>
 								<th scope="col">Delete</th>
 							  </tr>
 							</thead>
@@ -289,7 +289,6 @@
 							  <tr>
 								<th scope="row"><%= categories[i]._id %></th>
 								<td><%= categories[i].title %></td>
-								<td><button class="btn btn-lg btn-warning rounded-0 text-white" href="#" data-toggle="modal" data-target="#addCategory"><span>Add</span></button></td>
 								<td><a href="/categories/<%= categories[i]._id %>?_method=DELETE" onclick="return confirm('Are you sure?')" class="btn btn-lg text-white btn-danger"><span>Delete</span></a></td>
 							  </tr>
 					<%  } %>
