@@ -1,7 +1,9 @@
 const express = require("express");
 const session = require("express-session");
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
+const flash = require("connect-flash");
+const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const pageRoute = require("./routes/pageRoute");
 const courseRoute = require("./routes/courseRoute");
@@ -30,9 +32,15 @@ app.use(
     secret: "my_keyboard_cat",
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost/smartedu-db' })
+    store: MongoStore.create({ mongoUrl: "mongodb://localhost/smartedu-db" }),
   })
 );
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+});
+app.use(methodOverride("_method", { methods: ["POST", "GET"] }));
 
 //routes
 app.use("*", (req, res, next) => {
